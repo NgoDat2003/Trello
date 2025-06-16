@@ -19,6 +19,9 @@ export default function StarredMenu() {
         style={{color:"primary.main"}}
         onClick={handleOpen}
         endIcon={<ArrowDropDownIcon />}
+           sx={{
+          color:"white"
+        }}
       >
         Starred
       </Button>

@@ -16,9 +16,12 @@ export default function TemplateMenu() {
   return (
     <>
       <Button
-        style={{color:"primary.main"}}
+        style={{ color: "primary.main" }}
         onClick={handleOpen}
         endIcon={<ArrowDropDownIcon />}
+         sx={{
+          color: "white"
+        }}
       >
         Template
       </Button>

@@ -19,6 +19,9 @@ export default function RecentMenu() {
         style={{color:"primary.main"}}
         onClick={handleOpen}
         endIcon={<ArrowDropDownIcon />}
+        sx={{
+          color:"white"
+        }}
       >
         Recent
       </Button>

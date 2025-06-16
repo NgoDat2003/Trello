@@ -9,36 +9,36 @@ const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        primary: {
-          main: blue[700],
-        },
-        secondary: {
-          main: grey[800], 
-        },
-        error: {
-          main: red.A400,
-        },
-        background: {
-          default: "#ffffff",
-          paper: "#f5f5f5",
-        },
-        text: {
-          primary: grey[900],
-          secondary: grey[600],
-        },
-        common: {
-          black: "#000000",
-          white: "#ffffff", 
-        },
+        // primary: {
+        //   main: "#00bfa5",
+        // },
+        // secondary: {
+        //   main: grey[800], 
+        // },
+        // error: {
+        //   main: red.A400,
+        // },
+        // background: {
+        //   default: "#ffffff",
+        //   paper: "#f5f5f5",
+        // },
+        // text: {
+        //   primary: grey[900],
+        //   secondary: grey[600],
+        // },
+        // common: {
+        //   black: "#000000",
+        //   white: "#ffffff", 
+        // },
       },
     },
     dark: {
       palette: {
         primary: {
-          main: blue[200], 
+          main: blue[200],
         },
         secondary: {
-          main: grey[500], 
+          main: grey[500],
         },
         error: {
           main: red.A400,
@@ -59,17 +59,27 @@ const theme = extendTheme({
     },
   },
   components: {
-    MuiButton: {
+    MuiCssBaseline: {
       styleOverrides: {
-        root: {
-          textTransform: "none",
-        },
+        body:{
+          '*::-webkit-scrollbar': {
+            width: '8px',
+            height: '8px',
+          },
+          '*::-webkit-scrollbar-thumb': {
+            backgroundColor: '#dcdde1',
+            borderRadius: '8px',
+          },
+          '*::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: 'white',
+          },
+        }
       },
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        root: ({theme}) => ( {
-          color:theme.palette.primary.main,
+        root: ({ theme }) => ({
+          // color:theme.palette.primary.main,
           fontSize: "1rem",
           'MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.primary.light,
@@ -80,21 +90,31 @@ const theme = extendTheme({
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.primary.main,
           },
-          "& fieldset": {
-            borderWidth: "1px !important",
-            borderColor: theme.palette.primary.main,
-          },
+          "& fieldset": { borderWidth: "1px !important",},
+          "&:hover fieldset": {borderWidth: "2px !important",},
+          "&.Mui-focused fieldset": { borderWidth: "1px !important",},
         }),
       },
     },
     MuiInputLabel: {
       styleOverrides: {
-        root: ({theme}) => ({
-          color: theme.palette.primary.main,
+        root: ({ theme }) => ({
+          // color: theme.palette.primary.main,
           "&.Mui-focused": {
             color: theme.palette.primary.main,
           },
-          
+
+        }),
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          textTransform: "none",
+          borderWidth: "0.5px",
+          "&:hover": {
+            borderWidth: "1px",
+          },
         }),
       },
     },

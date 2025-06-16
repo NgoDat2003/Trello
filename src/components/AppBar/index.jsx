@@ -21,13 +21,14 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useState } from "react";
+import { Close, DarkMode, LibraryAdd, WbSunny } from "@mui/icons-material";
 
 export default function AppBar() {
   const { mode, setMode } = useColorScheme();
   const [user, setUser] = useState(true);
   const [menuAnchor, setMenuAnchor] = useState(null);
   const [moreAnchor, setMoreAnchor] = useState(null);
-
+  const [searchValue, setSearchValue] = useState("");
   const toggleTheme = () => {
     setMode(mode === "light" ? "dark" : "light");
   };
@@ -57,15 +58,19 @@ export default function AppBar() {
         alignItems: "center",
         justifyContent: "space-between",
         gap: 2,
+        backgroundColor: (theme) =>
+          theme.palette.mode === "light"
+            ? "#1565c0"
+            : "#2c3e50",
       }}
     >
       {/* Logo Section */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <AppsIcon sx={{ color: "primary.main" }} />
+        <AppsIcon sx={{ color: "white" }} />
         <Typography
           variant="h6"
           sx={{
-            color: "primary.main",
+            color: "white",
             display: { xs: "none", sm: "block" }, // Ẩn logo trên màn hình nhỏ
           }}
         >
@@ -76,7 +81,15 @@ export default function AppBar() {
           <RecentMenu />
           <StarredMenu />
           <TemplateMenu />
-          <Button variant="outlined">Create</Button>
+          <Button variant="outlined" sx={{
+            color: "white",
+            border: "none",
+            "&:hover": {
+              border: "none",
+
+            },
+          }}
+            startIcon={<LibraryAdd />}>Create</Button>
         </Box>
         <Box
           sx={{
@@ -85,7 +98,7 @@ export default function AppBar() {
           }}
         >
           <Button
-            sx={{ color: "primary.main" }}
+            sx={{ color: "white" }}
             onClick={handleMoreOpen}
             variant="outlined"
           >
@@ -111,7 +124,10 @@ export default function AppBar() {
             </MenuItem>
 
             <MenuItem >
-              <Button variant="outlined">Create</Button>
+              <Button variant="outlined" sx={{
+                color: "white"
+              }}
+                startIcon={<LibraryAdd />}>Create</Button>
             </MenuItem>
           </Menu>
         </Box>
@@ -129,18 +145,51 @@ export default function AppBar() {
           <TextField
             variant="outlined"
             placeholder="Search..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            type="text"
             size="small"
-            sx={{ width: 250 }}
+            sx={{
+              width: 160, color: "white",
+              "& label": { color: "white" },
+              "& input": { color: "white" },
+              "& label.Mui-focused": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white",
+                },
+              },
+            }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "primary.main" }} />
+                  <SearchIcon sx={{ color: "white", cursor: "pointer" }} />
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end" onClick={() => setSearchValue("")}>
+                  <IconButton>
+                    <Close sx={{ color: searchValue ? "white" : "transparent", cursor: "pointer" }} fontSize="small" />
+                  </IconButton>
                 </InputAdornment>
               ),
             }}
+            label="Search"
           />
-          <Button variant="contained" onClick={toggleTheme} sx={{ width: 150 }}>
-            Toggle Theme
+          <Button
+            variant="contained"
+            onClick={toggleTheme}
+            sx={{ width: 150, border: "1px solid #white", boxShadow: "none" }}
+            startIcon={mode === "light" ? <WbSunny /> : <DarkMode />}
+
+          >
+            {mode === "light" ? "Light" : "Dark"}
           </Button>
         </Box>
         <Box
@@ -150,7 +199,7 @@ export default function AppBar() {
           }}
         >
           <IconButton onClick={handleMenuOpen}>
-            <SearchIcon sx={{ color: "primary.main" }} />
+            <SearchIcon sx={{ color: "white" }} />
           </IconButton>
           <Menu
             anchorEl={menuAnchor}
@@ -166,7 +215,7 @@ export default function AppBar() {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchIcon sx={{ color: "primary.main" }} />
+                      <SearchIcon sx={{ color: "white" }} />
                     </InputAdornment>
                   ),
                 }}
@@ -183,10 +232,10 @@ export default function AppBar() {
             </MenuItem>
           </Menu>
         </Box>
-        <Badge badgeContent={4} color="error">
-          <NotificationsNoneIcon sx={{ color: "primary.main" }} />
+        <Badge color="warning" variant="dot" overlap="circular">
+          <NotificationsNoneIcon sx={{ color: "white" }} />
         </Badge>
-        <HelpOutlineIcon sx={{ color: "primary.main" }} />
+        <HelpOutlineIcon sx={{ color: "white" }} />
         {user ? (
           <Box
             component="img"
@@ -194,8 +243,8 @@ export default function AppBar() {
             alt="User Avatar"
             sx={{
               borderRadius: "50%",
-              width: 40,
-              height: 40,
+              width: 34,
+              height: 34,
               objectFit: "cover",
             }}
           />

@@ -19,6 +19,9 @@ export default function WorkspaceMenu() {
         style={{color:"primary.main"}}
         onClick={handleOpen}
         endIcon={<ArrowDropDownIcon />}
+           sx={{
+          color:"white"
+        }}
       >
         Workspace
       </Button>
