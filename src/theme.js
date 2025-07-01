@@ -1,10 +1,14 @@
 import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 import { red, blue, grey } from "@mui/material/colors";
+const HEIGHT_BAR = "58px";
+const HEIGHT_HEADER = "60px";
+const HEIGHT_CONTENT = `calc(100vh - ${HEIGHT_HEADER} - ${HEIGHT_BAR})`;
 
 const theme = extendTheme({
   trello: {
-    heightBar: 58,
-    heightHeader: 60,
+    heightBar: HEIGHT_BAR,
+    heightHeader: HEIGHT_HEADER,
+    heightContent: HEIGHT_CONTENT,
   },
   colorSchemes: {
     light: {
@@ -61,7 +65,7 @@ const theme = extendTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body:{
+        body: {
           '*::-webkit-scrollbar': {
             width: '8px',
             height: '8px',
@@ -90,9 +94,9 @@ const theme = extendTheme({
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.primary.main,
           },
-          "& fieldset": { borderWidth: "1px !important",},
-          "&:hover fieldset": {borderWidth: "2px !important",},
-          "&.Mui-focused fieldset": { borderWidth: "1px !important",},
+          "& fieldset": { borderWidth: "1px !important", },
+          "&:hover fieldset": { borderWidth: "2px !important", },
+          "&.Mui-focused fieldset": { borderWidth: "1px !important", },
         }),
       },
     },
@@ -103,6 +107,19 @@ const theme = extendTheme({
           "&.Mui-focused": {
             color: theme.palette.primary.main,
           },
+        
+
+        }),
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          // color: theme.palette.primary.main,
+          "&.MuiTypography-body1": {
+            fontSize: "0.875rem",
+          },
+        
 
         }),
       },

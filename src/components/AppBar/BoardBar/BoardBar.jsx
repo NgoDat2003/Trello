@@ -18,7 +18,7 @@ const MenuStyle = {
         color: "white"
     }
 }
-function BoardBar() {
+function BoardBar({board}) {
     return (
         <Box
             sx={{
@@ -32,14 +32,14 @@ function BoardBar() {
                 overflowX: "auto",
                 backgroundColor: (theme) =>
                     theme.palette.mode === "light"
-                        ? "#3498db"
+                        ? "#1976d2"
                         : "#34495e",
 
             }}
         >
             <Box px={2} sx={{ display: "flex", alignItems: "center", gap: 2 }} >
-                <Chip label="Clickable" icon={<Dashboard />} clickable sx={MenuStyle} />
-                <Chip label="Public/Private Workspace" icon={<VpnLock />} clickable sx={MenuStyle} />
+                <Chip label={board?.title} icon={<Dashboard />} clickable sx={MenuStyle} />
+                <Chip label={board?.type && board.type.charAt(0).toUpperCase() + board.type.slice(1)} icon={<VpnLock />} clickable sx={MenuStyle} />
                 <Chip label="Add to Google Drive" icon={<AddToDrive />} clickable sx={MenuStyle} />
                 <Chip label="Automation" icon={<BoltOutlined />} clickable sx={MenuStyle} />
                 <Chip label="Filters" icon={<FilterList />} clickable sx={MenuStyle} />
